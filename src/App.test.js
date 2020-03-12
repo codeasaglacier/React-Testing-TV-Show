@@ -29,7 +29,7 @@ import App from './App'
 // })
 
 
-test( 'Render the heading', async () => {
+test( 'Render the heading test by Id', async () => {
   //render the App into jest-dom so we can test
   const wrapper = rtl.render( <App /> )
 
@@ -47,3 +47,14 @@ test( 'Render the heading', async () => {
   //const element = wrapper.getByPlaceholderText( /count/i )
   //expect( element ).toHaveValue( 1 )
 //})
+
+test( 'Render the heading test by text', async () => {
+  //render the App into jest-dom so we can test
+  const wrapper = rtl.render( <App /> )
+
+  //element is now our dom element to test against
+  const element = await rtl.waitForElement( () => wrapper.getByText( 'Stranger Things' ))
+
+  //test will fail if element is not visible to our robot eyes
+  expect( element ).toBeVisible()
+})
